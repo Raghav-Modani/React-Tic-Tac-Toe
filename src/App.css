@@ -1,0 +1,28 @@
+.row {
+    display: grid;
+    grid-template-columns: 80px 80px 80px;
+    grid-gap: 10px;
+    margin: 10px;
+}
+
+.block {
+    height: 80px;
+    width: 80px;
+    font-size: xx-large;
+}
+
+.wrapper {
+    text-align: center;
+    margin: 10px 300px 0px 300px;
+}
+
+.container {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: 214px 300px;
+}
+
+ol {
+    list-style-type: none;
+}
