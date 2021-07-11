@@ -5,16 +5,12 @@ import { History } from '../states/History';
 import { stepnumber } from '../states/stepnumber';
 import { isnextX } from '../states/isnextX';
 import { WinnerState } from '../states/WinnerState';
-import { Player1 } from '../states/Player1';
-import { Player2 } from '../states/Player2';
 
 const Game = () => {
     const [History_game, setHistory] = useRecoilState(History)
     const [stepnumber_game, setStepnumber] = useRecoilState(stepnumber)
     const [nextTurnX, setnextTurnX] = useRecoilState(isnextX)
-    const [winner, setwinner] = useRecoilState(WinnerState);
-    const [name1,setName1]=useRecoilState(Player1)
-    const [name2,setName2]=useRecoilState(Player2)
+    const [, setwinner] = useRecoilState(WinnerState);
 
     
     setwinner(calWinner(History_game[stepnumber_game]))

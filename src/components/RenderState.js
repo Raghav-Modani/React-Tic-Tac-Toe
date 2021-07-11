@@ -12,12 +12,12 @@
     
     function RenderState() {
         
-    const [History_game, setHistory] = useRecoilState(History)
-    const [stepnumber_game, setStepnumber] = useRecoilState(stepnumber)
+    const History_game = useRecoilValue(History)
+    const [, setStepnumber] = useRecoilState(stepnumber)
     const [nextTurnX, setnextTurnX] = useRecoilState(isnextX)
     const winner = useRecoilValue(WinnerState);
-    const [name1,setName1]=useRecoilState(Player1)
-    const [name2,setName2]=useRecoilState(Player2)
+    const name1=useRecoilValue(Player1)
+    const name2=useRecoilValue(Player2)
 
     function jumpTo(move_number) {
         // this.setState({
