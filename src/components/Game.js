@@ -1,19 +1,28 @@
-
-
-import React, { useState } from 'react'
+import React from 'react'
 import Board from './Board';
+import { useRecoilState } from 'recoil';
+import { History } from '../states/History';
+import { stepnumber } from '../states/stepnumber';
+import { isnextX } from '../states/isnextX';
+import { WinnerState } from '../states/WinnerState';
+import { Player1 } from '../states/Player1';
+import { Player2 } from '../states/Player2';
 
 const Game = () => {
-    const [History, setHistory] = useState([Array(9).fill(null)])
-    const [stepnumber, setStepnumber] = useState(0)
-    const [nextTurnX, setnextTurnX] = useState(true)
-    const winner = calWinner(History[stepnumber]);
+    const [History_game, setHistory] = useRecoilState(History)
+    const [stepnumber_game, setStepnumber] = useRecoilState(stepnumber)
+    const [nextTurnX, setnextTurnX] = useRecoilState(isnextX)
+    const [winner, setwinner] = useRecoilState(WinnerState);
+    const [name1,setName1]=useRecoilState(Player1)
+    const [name2,setName2]=useRecoilState(Player2)
 
+    
+    setwinner(calWinner(History_game[stepnumber_game]))
 
 
     function handleClick(i) {
-        const history = History.slice(0, stepnumber + 1)
-        const current = history[stepnumber];
+        const history = History_game.slice(0, stepnumber_game + 1)
+        const current = history[stepnumber_game];
         const square = current.slice();
         if (calWinner(square) || square[i]) {
             return;
@@ -24,42 +33,15 @@ const Game = () => {
         setnextTurnX(!nextTurnX)
     }
 
-    function jumpTo(move_number) {
-        // this.setState({
-        //     stepnumber: move_number,
-        //     nextTurnX: (move_number % 2) === 0
-        // })
-        setStepnumber(move_number)
-        setnextTurnX((move_number % 2) === 0)
-
-    }
-
-    const moves = History.map((dummy_square, move) => {
-        const listitem = move ? `Go to move ${move}` : 'Go to Start';
-        return (
-            <li key={move}>
-                <button onClick={() => jumpTo(move)}>{listitem}</button>
-            </li>
-        )
-    })
-    let status;
-    if (winner) {
-        status = 'Winner: ' + winner;
-    } else {
-        status = 'Next player: ' + (nextTurnX ? 'X' : 'O');
-    }
-
+ 
     return (
 
         <div className="wrapper">
             < div className="container">
                 <div className="board">
-                    <Board onClickgame={i => handleClick(i)} squares={History[stepnumber]} ></Board>
+                    <Board onClickgame={i => handleClick(i)} squares={History_game[stepnumber_game]} ></Board>
                 </div>
-                <div className="game-info">
-                    {status}
-                    <ol>{moves}</ol>
-                </div>
+                
 
             </div>
         </div>

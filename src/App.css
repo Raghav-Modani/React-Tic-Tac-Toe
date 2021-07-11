@@ -1,3 +1,4 @@
+@import '~antd/dist/antd.css';
 .row {
     display: grid;
     grid-template-columns: 80px 80px 80px;
@@ -6,10 +7,16 @@
 }
 
 .block {
-    height: 80px;
-    width: 80px;
-    font-size: xx-large;
-    background-color: rgb(83, 83, 214);
+    height: 80px !important;
+    width: 80px !important;
+    font-size: xx-large !important;
+    background-color: black !important;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    text-decoration: none;
 }
 
 .wrapper {
@@ -21,9 +28,33 @@
     display: grid;
     justify-content: center;
     align-content: center;
-    grid-template-columns: 214px 300px;
+    max-width: 600px;
+    grid-template-columns: repeat(2, 1fr);
 }
 
 ol {
     list-style-type: none;
+    margin: 3px;
+}
+
+.App {
+    text-align: center;
+}
+
+.Header,
+.Footer,
+.Sider,
+.Content {
+    background-color: whitesmoke !important;
+    font-size: x-large;
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.Sider-Game {
+    margin-right: 250px;
+}
+
+.Content-Sider {
+    background-color: whitesmoke !important;
 }
